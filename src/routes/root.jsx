@@ -10,12 +10,12 @@ import {
 import { getContacts, createContact } from "../contacts"
 import { useEffect } from "react";
 
-
+//Create contact funciton
 export async function action() {
   const contact = await createContact();
   return redirect(`/contacts/${contact.id}/edit`);
 }
-
+//Loader function, look for query and await the full input from user
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
@@ -23,6 +23,7 @@ export async function loader({ request }) {
   return {contacts, q};
 }
 
+//root(home)
 export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
