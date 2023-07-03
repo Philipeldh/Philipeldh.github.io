@@ -5,12 +5,14 @@ import {
     Form,
     redirect,
     useNavigation,
-    useSubmit,    
+    useSubmit,
+    Link,    
 } from "react-router-dom";
+//import {Button} from '@mui/material/Button';
 import { getContacts, createContact } from "../contacts"
 import { useEffect } from "react";
 
-
+//Create contact funciton
 export async function action() {
   const contact = await createContact();
   return redirect(`/contacts/${contact.id}/edit`);
@@ -33,15 +35,18 @@ export default function Root() {
     new URLSearchParams(navigation.location.search).has(
       "q"
     );
-
+//Use effect when quering search in sidebar.
   useEffect(() => {
     document.getElementById("q").value = q;
   }, [q]);
     return (
       <>
         <div id="sidebar">
-          <h1>React Router Contacts</h1>
+          <h1>Philip Eldh's Kontakter</h1>
           <div>
+            <Link to="/">
+              <button >Home!</button>
+              </Link>
             <Form id="search-form" role="search">
               <input
                 id="q"
